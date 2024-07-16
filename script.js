@@ -4,7 +4,9 @@ const ACbuttonElm = document.querySelector(".btn-AC");
 const displayElm = document.querySelector(".topdisplay");
 const equalElm = document.querySelector(".btn-equal");
 const cutElm = document.querySelector(".btn-C");
+const dotElm = document.querySelector(".btn-dot");
 let numberToDisplay = "";
+let lastOperator = "";
 const operators = ["+", "-", "%", "/", "*"];
 const checkLastOperator = () => {
   const lastChar = numberToDisplay[numberToDisplay.length - 1];
@@ -28,7 +30,19 @@ const buttonAction = (value) => {
     return display(numberToDisplay);
   }
   if (operators.includes(value)) {
+    lastOperator = value;
     checkLastOperator();
+  }
+  if (value === dotElm.innerText) {
+    const lastOperatorIndex = numberToDisplay.lastIndexOf(lastOperator);
+    const lastNumberSet = numberToDisplay.slice(lastOperatorIndex); //this provides the last number subset after an operator so that multiple "." after the operator can be handled
+    console.log(lastNumberSet);
+    if (lastNumberSet.includes(".")) {
+      return;
+    }
+    if (!lastOperator && numberToDisplay.includes(".")) {
+      return;
+    }
   }
   numberToDisplay += value;
   display(numberToDisplay);
