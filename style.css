@@ -125,3 +125,22 @@ body {
 .btn-equal {
   grid-area: equal;
 }
+.prank {
+  background: linear-gradient(rgb(194, 3, 3), rgb(255, 77, 0));
+  color: white;
+  animation: bounce 0.5s;
+}
+@keyframes bounce {
+  0% {
+    transform: translateX(8px);
+  }
+  50% {
+    transform: translateX(-8px);
+  }
+  80% {
+    transform: translateX(8px);
+  }
+  100% {
+    transform: translateX(-8px);
+  }
+}

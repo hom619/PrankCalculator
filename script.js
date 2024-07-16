@@ -7,6 +7,7 @@ const cutElm = document.querySelector(".btn-C");
 const dotElm = document.querySelector(".btn-dot");
 let numberToDisplay = "";
 let lastOperator = "";
+const audio = new Audio("child-laugh.mp3");
 const operators = ["+", "-", "%", "/", "*"];
 const checkLastOperator = () => {
   const lastChar = numberToDisplay[numberToDisplay.length - 1];
@@ -17,6 +18,7 @@ const checkLastOperator = () => {
 };
 const buttonAction = (value) => {
   //created a separte function for the button action inorder to minimise the code in the loop
+  displayElm.classList.remove("prank");
   if (value === ACbuttonElm.innerText) {
     numberToDisplay = "";
     return display(numberToDisplay);
@@ -60,7 +62,16 @@ const display = (str) => {
 };
 
 const calculateTotal = () => {
-  const total = eval(numberToDisplay); //eval function will evaluate the string expression and makes the calculation
+  const randomValue = randomResult();
+  if (randomValue) {
+    displayElm.classList.add("prank");
+    audio.play();
+  }
+  const total = eval(numberToDisplay) + randomValue; //eval function will evaluate the string expression and makes the calculation
   numberToDisplay = total.toString();
   display(numberToDisplay);
+};
+const randomResult = () => {
+  const randNum = Math.round(Math.random() * 10);
+  return randNum < 10 ? randNum : 0;
 };
