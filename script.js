@@ -3,6 +3,7 @@ const allButtons = document.querySelectorAll(".btn"); //accessing all the button
 const ACbuttonElm = document.querySelector(".btn-AC");
 const displayElm = document.querySelector(".topdisplay");
 const equalElm = document.querySelector(".btn-equal");
+const cutElm = document.querySelector(".btn-C");
 let numberToDisplay = "";
 const buttonAction = (value) => {
   //created a separte function for the button action inorder to minimise the code in the loop
@@ -12,6 +13,10 @@ const buttonAction = (value) => {
   }
   if (value === equalElm.innerText) {
     return calculateTotal();
+  }
+  if (value === cutElm.innerText) {
+    numberToDisplay = numberToDisplay.slice(0, -1); //here the slice method will read the string from index 0 and stops before the last character
+    return display(numberToDisplay);
   }
   numberToDisplay += value;
   display(numberToDisplay);
@@ -30,5 +35,6 @@ const display = (str) => {
 
 const calculateTotal = () => {
   const total = eval(numberToDisplay); //eval function will evaluate the string expression and makes the calculation
-  display(total);
+  numberToDisplay = total.toString();
+  display(numberToDisplay);
 };
