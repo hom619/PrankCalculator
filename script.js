@@ -23,7 +23,7 @@ const buttonAction = (value) => {
     numberToDisplay = "";
     return display(numberToDisplay);
   }
-  if (value === equalElm.innerText) {
+  if (value === equalElm.innerText || value === "Enter") {
     checkLastOperator();
     return calculateTotal();
   }
@@ -79,3 +79,13 @@ const randomResult = () => {
   const randNum = Math.round(Math.random() * 10);
   return randNum < 10 ? randNum : 0;
 };
+
+// Binding Keyboard with calculator buttons
+
+document.addEventListener("keypress", (e) => {
+  const value = e.key;
+  if (e.code.includes("Key")) {
+    return;
+  }
+  buttonAction(value);
+});
