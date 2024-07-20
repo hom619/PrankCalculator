@@ -52,6 +52,7 @@ body {
     "btn1 btn2 btn3 plus"
     "btn0 dot equal equal";
   transform: perspective(70rem) rotateX(20deg);
+  animation: effect 2s;
 }
 .calculator .btn {
   background: var(--primary);
@@ -142,5 +143,22 @@ body {
   }
   100% {
     transform: translateX(-8px);
+  }
+}
+@keyframes effect {
+  0% {
+    transform: perspective(10rem) rotateX(20deg);
+  }
+  20% {
+    transform: perspective(10rem) rotateY(20deg);
+  }
+  50% {
+    transform: perspective(40rem) rotateX(20deg);
+  }
+  80% {
+    transform: perspective(70rem) rotateY(20deg);
+  }
+  100% {
+    transform: perspective(70rem) rotateX(20deg);
   }
 }
